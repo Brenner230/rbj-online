@@ -1,27 +1,27 @@
-<header class="site-header glass">
-    <div class="container flex justify-between items-center" style="padding-top: var(--space-4); padding-bottom: var(--space-4);">
+<header class="site-header">
+    <div class="container flex justify-between items-center">
         
-        <a href="index.html" class="brand flex items-center gap-2">
-            <i class="fa-solid fa-code text-brand-primary" style="color: var(--brand-primary); font-size: 1.5rem;"></i>
+        <a href="index.html" class="flex items-center gap-2">
+            <i class="fa-solid fa-code" style="color: var(--brand-primary); font-size: 1.5rem;"></i>
             <span style="font-size: var(--text-xl); font-weight: 700; color: var(--text-heading);">
                 Brenner<span style="color: var(--brand-primary);">Lab</span>
             </span>
         </a>
 
-        <nav class="desktop-nav hidden-mobile">
+        <nav class="hidden-mobile">
             <ul class="flex items-center gap-6" style="list-style: none;">
-                <li><a href="index.html" class="nav-link font-medium">Home</a></li>
-                <li><a href="metrics.html" class="nav-link font-medium">Metrics</a></li>
-                <li><a href="forms.html" class="nav-link font-medium">Forms</a></li>
-                <li><a href="galleries.html" class="nav-link font-medium">Galleries</a></li>
-                <li><a href="reviews.html" class="nav-link font-medium">Reviews</a></li>
-                <li><a href="navigation.html" class="nav-link font-medium">Nav Styles</a></li>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="metrics.html" class="nav-link">Metrics</a></li>
+                <li><a href="forms.html" class="nav-link">Forms</a></li>
+                <li><a href="galleries.html" class="nav-link">Galleries</a></li>
+                <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+                <li><a href="navigation.html" class="nav-link">Nav Styles</a></li>
             </ul>
         </nav>
 
-        <div class="header-actions hidden-mobile">
-            <button onclick="copyCodeToClipboard('https://robertbrennerjones.online')" style="background: var(--brand-primary); color: white; border: none; padding: 8px 16px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: background var(--transition-fast);">
-                <i class="fa-regular fa-copy"></i> Copy Link
+        <div class="hidden-mobile">
+            <button class="btn btn-primary" onclick="copyCodeToClipboard('https://robertbrennerjones.online')">
+                <i class="fa-regular fa-copy" style="margin-right: 8px;"></i> Copy Link
             </button>
         </div>
 
@@ -30,34 +30,4 @@
         </button>
 
     </div>
-
-    <div id="mobile-nav" class="bg-surface" style="display: none; padding: var(--space-4); border-top: 1px solid var(--text-muted);">
-        <ul class="flex flex-col gap-4" style="list-style: none;">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="metrics.html" class="nav-link">Metrics</a></li>
-            <li><a href="forms.html" class="nav-link">Forms</a></li>
-            <li><a href="galleries.html" class="nav-link">Galleries</a></li>
-            <li><a href="reviews.html" class="nav-link">Reviews</a></li>
-            <li><a href="navigation.html" class="nav-link">Nav Styles</a></li>
-        </ul>
-    </div>
 </header>
-
-<style>
-    .site-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .nav-link { color: var(--text-body); transition: color var(--transition-fast); }
-    .nav-link:hover, .nav-link.active { color: var(--brand-primary); font-weight: 600; }
-    
-    @media (max-width: 768px) {
-        .hidden-mobile { display: none !important; }
-        #mobile-menu-btn { display: block !important; }
-        #mobile-nav.is-open { display: block !important; }
-    }
-</style>
