@@ -1,27 +1,41 @@
 /* ==========================================================================
    BRENNER LAB - GLOBAL DESIGN SYSTEM
+   Theme: Midnight & Cyber Blue (Deployment Version)
    ========================================================================== */
 
+/* --- SECTION 1: CSS VARIABLES --- */
 :root {
-    --bg-main: #0a0a0a;
-    --bg-surface: #141414;
-    --bg-elevated: #1f1f1f;
-    --brand-primary: #2563eb;
-    --brand-hover: #3b82f6;
-    --brand-glow: rgba(37, 99, 235, 0.3);
+    /* Colors */
+    --bg-main: #09090b;        /* Zinc 950 - Deeper black */
+    --bg-surface: #18181b;     /* Zinc 900 - Richer card background */
+    --bg-elevated: #27272a;    /* Zinc 800 */
+    
+    --brand-primary: #3b82f6;  /* Electric Blue */
+    --brand-hover: #60a5fa;    /* Lighter Blue */
+    --brand-glow: rgba(59, 130, 246, 0.4);
+    
     --accent-success: #10b981;
-    --accent-success-hover: #059669;
+    --accent-success-bg: rgba(16, 185, 129, 0.15);
     --accent-warning: #f59e0b;
-    --text-heading: #ffffff;
-    --text-body: #a1a1aa;
-    --text-muted: #52525b;
+    --accent-danger: #ef4444;
+    --accent-danger-bg: rgba(239, 68, 68, 0.15);
+
+    /* Typography Contrast Upgrades */
+    --text-heading: #ffffff;   /* Pure white */
+    --text-body: #d4d4d8;      /* Zinc 300 - Brighter, easier to read */
+    --text-muted: #a1a1aa;     /* Zinc 400 */
+
+    /* Typography Scale */
     --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
     --text-sm: 0.875rem;
     --text-base: 1rem;
     --text-lg: 1.125rem;
     --text-xl: 1.25rem;
     --text-2xl: 1.5rem;
-    --text-4xl: 2.25rem;
+    --text-3xl: 2rem;
+    --text-4xl: 2.5rem;
+
+    /* Spacing */
     --space-2: 0.5rem;
     --space-4: 1rem;
     --space-6: 1.5rem;
@@ -32,7 +46,13 @@
     --transition-fast: 150ms ease-in-out;
 }
 
+/* --- SECTION 2: RESET & BASE --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 110px; /* THE FIX: Stops anchor links from hiding under fixed header */
+}
 
 body {
     background-color: var(--bg-main);
@@ -48,28 +68,6 @@ body {
 a { color: var(--brand-primary); text-decoration: none; transition: color var(--transition-fast); }
 a:hover { color: var(--brand-hover); }
 
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-4); }
-
-/* --- HEADER & FOOTER OVERLAP FIX --- */
-.site-header {
-    position: fixed; top: 0; left: 0; width: 100%; height: 75px; display: flex; align-items: center;
-    background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000;
-}
-.site-footer {
-    background-color: var(--bg-surface); border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding: var(--space-8) 0 var(--space-4) 0; margin-top: auto; width: 100%;
-}
-main { flex: 1; padding-top: 100px; padding-bottom: var(--space-12); width: 100%; }
-
-/* Dedicated Page Header to prevent collapsing margins under the nav */
-.page-header {
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-12);
-    text-align: center;
-    padding-top: var(--space-4); 
-}
-
 /* Chrome Autofill Override */
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px var(--bg-main) inset !important;
@@ -77,31 +75,81 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     transition: background-color 5000s ease-in-out 0s;
 }
 
-/* --- GRID & FLEX --- */
+/* --- SECTION 3: LAYOUT & SCAFFOLDING --- */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-4); }
+
+.site-header {
+    position: fixed; top: 0; left: 0; width: 100%; height: 75px; display: flex; align-items: center;
+    background: rgba(9, 9, 11, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); z-index: 1000;
+}
+
+.site-footer {
+    background-color: var(--bg-surface); border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: var(--space-8) 0 var(--space-4) 0; margin-top: auto; width: 100%;
+}
+
+main { 
+    flex: 1; 
+    margin-top: 75px; /* Safely pushes content below header */
+    padding-top: var(--space-8); 
+    padding-bottom: var(--space-12); 
+    width: 100%; 
+}
+
+/* --- SECTION 4: TYPOGRAPHY POP --- */
+h1, h2, h3, h4 { 
+    color: var(--text-heading); 
+    font-weight: 700; 
+    line-height: 1.2; 
+}
+
+/* The Gradient Text Effect for Main Titles */
+.text-gradient {
+    background: linear-gradient(to right, #ffffff 0%, #a1a1aa 100%);
+    background-clip: text; /* Standard property */
+    -webkit-background-clip: text; /* Webkit vendor prefix */
+    -webkit-text-fill-color: transparent;
+    color: #ffffff; /* Fallback for older browsers */
+    display: inline-block;
+}
+
+/* --- SECTION 5: UTILITIES --- */
+/* Layout & Alignment */
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
 .items-center { align-items: center; }
 .justify-between { justify-content: space-between; }
 .justify-center { justify-content: center; }
+.flex-wrap { flex-wrap: wrap; }
+.inline-flex { display: inline-flex; }
+
+/* Grid Helpers */
+.grid { display: grid; gap: var(--space-6); }
+
+/* Spacing Engine */
 .gap-2 { gap: var(--space-2); }
 .gap-4 { gap: var(--space-4); }
 .gap-6 { gap: var(--space-6); }
-.text-center { text-align: center; }
+.gap-8 { gap: var(--space-8); }
+
+.mb-2 { margin-bottom: var(--space-2); }
 .mb-4 { margin-bottom: var(--space-4); }
 .mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
 .mt-4 { margin-top: var(--space-4); }
+.mt-8 { margin-top: var(--space-8); }
+.mt-12 { margin-top: var(--space-12); }
 
-.grid { display: grid; gap: var(--space-6); }
-@media (min-width: 1024px) {
-    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-}
-@media (min-width: 768px) and (max-width: 1023px) {
-    .grid-cols-3, .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
+/* Visual Utilities */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.w-full { width: 100%; }
+.max-w-md { max-width: 450px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.hidden { display: none; }
 
-/* --- BUTTON EXPERT STATES --- */
+/* --- SECTION 6: BUTTONS --- */
 .btn {
     display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px;
     border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: all var(--transition-fast);
@@ -111,13 +159,13 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .btn-primary:hover:not(:disabled) { background-color: var(--brand-hover); transform: translateY(-2px); box-shadow: 0 4px 20px var(--brand-glow); }
 
 .btn-success { background-color: var(--accent-success); color: #ffffff; box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
-.btn-success:hover:not(:disabled) { background-color: var(--accent-success-hover); transform: translateY(-2px); }
+.btn-success:hover:not(:disabled) { background-color: #059669; transform: translateY(-2px); }
 
-.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--text-heading); }
-.btn-outline:hover:not(:disabled) { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
+.btn-outline { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-heading); }
+.btn-outline:hover:not(:disabled) { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
 
 .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; box-shadow: none !important; filter: grayscale(100%); }
 
-.nav-link { color: var(--text-body); font-weight: 500; }
+.nav-link { color: var(--text-muted); font-weight: 500; }
 .nav-link:hover, .nav-link.active { color: var(--text-heading); text-shadow: 0 0 10px var(--brand-glow); }
 @media (max-width: 768px) { .hidden-mobile { display: none !important; } }

@@ -2,25 +2,39 @@
    BRENNER LAB - COMPONENTS STYLESHEET
    ========================================================================== */
 
-/* --- COMPONENT SHOWCASE WRAPPERS --- */
-.customization-badge {
-    display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-pill); font-size: var(--text-sm); color: var(--text-body); margin-bottom: var(--space-6);
+/* --- SECTION 1: PAGE OVERVIEWS & DIRECTORIES --- */
+.page-overview {
+    text-align: center; margin-bottom: var(--space-12);
 }
-.customization-badge i { color: var(--brand-primary); }
+.customization-badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
+    background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 999px; font-size: var(--text-sm); color: var(--brand-primary); margin-bottom: var(--space-6); font-weight: 600;
+}
+.directory-grid {
+    display: grid; gap: var(--space-4); margin-top: var(--space-8);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.directory-card {
+    background: var(--bg-surface); border: 1px solid rgba(255,255,255,0.05); padding: var(--space-6);
+    border-radius: var(--radius-lg); text-align: left; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between;
+}
+.directory-card:hover { border-color: var(--brand-primary); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.directory-card h3 { font-size: var(--text-lg); margin-bottom: 8px; color: var(--text-heading); }
+.directory-card p { font-size: var(--text-sm); color: var(--text-muted); margin-bottom: 16px; flex: 1; }
 
+/* --- SECTION 2: SHOWCASE WRAPPERS --- */
 .showcase-section {
     margin-bottom: var(--space-12); padding: var(--space-8); background: var(--bg-surface);
     border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.03);
 }
 .showcase-header { margin-bottom: var(--space-8); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: var(--space-4); }
 .showcase-tag {
-    display: inline-block; padding: 4px 12px; background: rgba(37, 99, 235, 0.1); color: var(--brand-primary);
-    border-radius: 999px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--space-2);
+    display: inline-block; padding: 4px 12px; background: rgba(255, 255, 255, 0.05); color: var(--text-muted);
+    border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--space-2);
 }
 
-/* --- METRICS --- */
+/* --- SECTION 3: METRIC COMPONENTS --- */
 .metric-card-saas { background: var(--bg-main); padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.05); transition: transform var(--transition-fast); }
 .metric-card-saas:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.1); }
 .metric-icon-wrapper { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: var(--space-4); }
@@ -32,7 +46,7 @@
 .metric-minimal .value { font-size: 4rem; font-weight: 800; color: var(--text-heading); line-height: 1; }
 .metric-minimal .label { font-size: var(--text-sm); color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: var(--space-2); }
 
-.metric-neon { background: linear-gradient(145deg, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid rgba(37, 99, 235, 0.2); box-shadow: inset 0 0 20px rgba(37, 99, 235, 0.05); text-align: center; }
+.metric-neon { background: linear-gradient(145deg, rgba(24,24,27,1) 0%, rgba(9,9,11,1) 100%); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid rgba(37, 99, 235, 0.2); box-shadow: inset 0 0 20px rgba(37, 99, 235, 0.05); text-align: center; }
 .metric-neon .value { font-size: 3rem; font-weight: 700; color: var(--brand-primary); text-shadow: 0 0 15px rgba(37, 99, 235, 0.5); }
 
 .metric-progress-card { padding: var(--space-4); }
@@ -40,15 +54,19 @@
 .progress-track { width: 100%; height: 8px; background: var(--bg-main); border-radius: 999px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
 .progress-fill { height: 100%; background: var(--brand-primary); border-radius: 999px; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
-/* --- FORMS --- */
+/* Trend Pills (New) */
+.trend-pill { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 8px; vertical-align: middle; }
+.trend-pos { background: var(--accent-success-bg); color: var(--accent-success); }
+.trend-neg { background: var(--accent-danger-bg); color: var(--accent-danger); }
+
+/* --- SECTION 4: FORM COMPONENTS --- */
 .form-container { position: relative; } 
 .form-group { margin-bottom: var(--space-4); text-align: left; }
-.form-label { display: block; font-size: var(--text-sm); font-weight: 500; margin-bottom: var(--space-2); color: var(--text-body); }
+.form-label { display: block; font-size: var(--text-sm); font-weight: 500; margin-bottom: 6px; color: var(--text-heading); }
 .form-control { width: 100%; padding: 14px 16px; background: var(--bg-main); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); color: var(--text-heading); transition: all var(--transition-fast); font-size: var(--text-base); }
-.form-control:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); }
+.form-control:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
 textarea.form-control { resize: vertical; min-height: 120px; }
 
-/* Checkbox specific styling */
 .checkbox-group { display: flex; align-items: flex-start; gap: 12px; margin-top: var(--space-6); cursor: pointer; }
 .checkbox-group input[type="checkbox"] { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--brand-primary); cursor: pointer; }
 
@@ -60,25 +78,21 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 .form-rugged { background: var(--bg-elevated); padding: var(--space-6); border-radius: var(--radius-md); border-top: 4px solid var(--accent-warning); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 .form-rugged .form-control { background: #000; border: 1px solid rgba(255,255,255,0.05); }
 
-/* WIZARD ENGINE (UPGRADED) */
+.form-glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); padding: var(--space-8); border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center; }
+
+/* Wizard Engine */
 .form-wizard { padding: var(--space-8); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); background: var(--bg-elevated); }
 .wizard-steps-container { position: relative; margin-bottom: var(--space-8); padding: 0 10px; }
 .wizard-steps { display: flex; justify-content: space-between; position: relative; z-index: 2; }
-/* The gray background line */
 .wizard-steps-container::before { content: ''; position: absolute; top: 50%; left: 10px; right: 10px; height: 4px; background: rgba(255,255,255,0.08); z-index: 0; transform: translateY(-50%); border-radius: 2px; }
-/* The colored progressive fill line */
 .wizard-progress-line { position: absolute; top: 50%; left: 10px; height: 4px; background: var(--brand-primary); z-index: 1; transform: translateY(-50%); border-radius: 2px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; box-shadow: 0 0 10px var(--brand-glow); }
-
 .step-indicator { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-surface); border: 3px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; z-index: 2; font-weight: bold; font-size: 16px; color: var(--text-muted); transition: all 0.4s ease; }
-/* Current active step - Ringed */
 .step-indicator.active { border-color: var(--brand-primary); color: var(--text-heading); background: var(--bg-surface); box-shadow: 0 0 0 4px rgba(37,99,235,0.15); }
-/* Completed step - Solid Fill */
 .step-indicator.completed { border-color: var(--brand-primary); background: var(--brand-primary); color: white; }
-
 .wizard-pane { display: none; animation: fadeIn 0.4s ease; }
 .wizard-pane.active { display: block; }
 
-/* Interactive UI States */
+/* State Animations */
 .success-message { text-align: center; padding: var(--space-8); animation: fadeIn 0.5s ease; }
 .spinner { animation: spin 1s linear infinite; margin-right: 8px; }
 @keyframes spin { 100% { transform: rotate(360deg); } }

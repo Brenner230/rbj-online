@@ -14,22 +14,44 @@
 
     <main class="container">
         
-        <div class="page-header animate-on-scroll">
+        <div class="page-overview animate-on-scroll">
             <div class="customization-badge">
-                <i class="fa-solid fa-sliders"></i>
-                Fully customizable architecture: Edit fields, layouts, colors, and API routing.
+                <i class="fa-solid fa-code-branch"></i> End-to-End Control: Connects seamlessly to your CRM, Webhooks, or Mailchimp.
             </div>
-            <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">The Conversion Lab</h1>
-            <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">A form is a conversation with your customer. If it looks broken or feels tedious, you lose the lead. Test out these 3 distinct form architectures, complete with simulated API submissions.</p>
+            <h1 class="text-gradient" style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">The Conversion Lab</h1>
+            <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">A form is a conversation. If it feels tedious, you lose the lead. Explore 4 distinct architectures optimized to convert based on specific user psychology.</p>
+            
+            <div class="directory-grid">
+                <div class="directory-card">
+                    <h3>Travel & Concierge</h3>
+                    <p>Minimalist layout for Airbnb hosts, agents, and luxury services.</p>
+                    <a href="#sleek-form" class="btn btn-outline" style="width: 100%;">View Form</a>
+                </div>
+                <div class="directory-card">
+                    <h3>Complex Onboarding</h3>
+                    <p>The Wizard breaks friction into bite-sized steps for SaaS setups.</p>
+                    <a href="#wizard-form" class="btn btn-outline" style="width: 100%;">View Form</a>
+                </div>
+                <div class="directory-card">
+                    <h3>Industrial & Trades</h3>
+                    <p>Rugged, high-contrast quote boxes for contractors and HVAC.</p>
+                    <a href="#rugged-form" class="btn btn-outline" style="width: 100%;">View Form</a>
+                </div>
+                <div class="directory-card">
+                    <h3>Beta Waitlist</h3>
+                    <p>High-conversion glassmorphism capture for software launches.</p>
+                    <a href="#waitlist-form" class="btn btn-outline" style="width: 100%;">View Form</a>
+                </div>
+            </div>
         </div>
 
-        <section class="showcase-section animate-on-scroll">
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.05); margin-bottom: var(--space-12);">
+
+        <section id="sleek-form" class="showcase-section animate-on-scroll">
             <div class="showcase-header">
                 <span class="showcase-tag">Style: Elite / Concierge</span>
                 <h2>The Travel Inquiry</h2>
-                <p style="color: var(--text-muted);">Uses minimalist, bottom-border inputs. It feels like a high-end consultation rather than data-entry. Best for luxury travel, bespoke real estate, and high-ticket services.</p>
             </div>
-            
             <div class="form-container" style="max-width: 600px; margin: 0 auto; background: var(--bg-surface); padding: 40px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
                 <form class="form-sleek simulated-form" data-success-title="Itinerary Requested" data-success-msg="An agent will review your destination preferences and contact you shortly." data-reset-text="Plan Another Trip">
                     <div class="grid grid-cols-2">
@@ -55,15 +77,13 @@
             </div>
         </section>
 
-        <section class="showcase-section animate-on-scroll">
+        <section id="wizard-form" class="showcase-section animate-on-scroll">
             <div class="showcase-header">
-                <span class="showcase-tag">Style: SaaS / Complex Onboarding</span>
+                <span class="showcase-tag">Style: SaaS / Software</span>
                 <h2>The Multi-Step Wizard</h2>
-                <p style="color: var(--text-muted);">Reduces cognitive load by slicing a massive form into psychological bite-sized steps. Features a dynamic progress line and active/completed states. Crucial for software onboarding.</p>
             </div>
-            
             <div class="form-container" style="max-width: 600px; margin: 0 auto;">
-                <form class="form-wizard simulated-form" data-success-title="Account Created" data-success-msg="Your enterprise workspace is ready. Check your email for login credentials." data-reset-text="Restart Onboarding">
+                <form class="form-wizard simulated-form" data-success-title="Workspace Live" data-success-msg="Your enterprise environment is ready. Check your email for login credentials." data-reset-text="Restart Demo">
                     
                     <div class="wizard-steps-container">
                         <div class="wizard-progress-line"></div>
@@ -86,12 +106,11 @@
                                 <input type="password" class="form-control" placeholder="••••••••" required>
                             </div>
                         </div>
-
                         <div class="wizard-pane">
                             <h3 class="mb-6">Company Info</h3>
                             <div class="form-group">
                                 <label class="form-label">Company Name</label>
-                                <input type="text" class="form-control" placeholder="Acme Corp">
+                                <input type="text" class="form-control" placeholder="Acme Corp" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Team Size</label>
@@ -102,11 +121,9 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="wizard-pane">
                             <h3 class="mb-4">Final Review</h3>
                             <p style="color: var(--text-muted);">Please review your information. By proceeding, you agree to setup this workspace under our Master Service Agreement.</p>
-                            
                             <label class="checkbox-group">
                                 <input type="checkbox" id="terms-check">
                                 <div>
@@ -115,8 +132,7 @@
                                 </div>
                             </label>
                         </div>
-
-                        <div class="flex justify-between mt-8" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                        <div class="flex justify-between mt-8" style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;">
                             <button type="button" id="wizard-prev" class="btn btn-outline">Back</button>
                             <button type="button" id="wizard-next" class="btn btn-primary">Next Step <i class="fa-solid fa-arrow-right"></i></button>
                             <button type="submit" style="display:none;">Submit</button>
@@ -126,13 +142,11 @@
             </div>
         </section>
 
-        <section class="showcase-section animate-on-scroll">
+        <section id="rugged-form" class="showcase-section animate-on-scroll">
             <div class="showcase-header">
                 <span class="showcase-tag">Style: Industrial / Trades</span>
                 <h2>The Trade Quote</h2>
-                <p style="color: var(--text-muted);">High contrast, highly legible, heavy borders. It feels reliable and straightforward. Designed specifically to convert mobile traffic for local contractors and emergency services.</p>
             </div>
-            
             <div class="form-container" style="max-width: 500px; margin: 0 auto;">
                 <form class="form-rugged simulated-form" data-success-title="Quote Received" data-success-msg="A local technician has been pinged and will contact you within 15 minutes." data-reset-text="Submit Another Issue">
                     <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-bolt" style="color: var(--accent-warning);"></i> Request an Estimate</h3>
@@ -140,19 +154,33 @@
                         <label class="form-label">Service Type</label>
                         <select class="form-control">
                             <option>Commercial Wiring</option>
-                            <option>Residential Panel Upgrade</option>
-                            <option>Emergency Repair</option>
+                            <option>Residential Panel</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Property ZIP Code</label>
+                        <label class="form-label">ZIP Code</label>
                         <input type="text" class="form-control" value="78732" required>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Issue Description</label>
-                        <textarea class="form-control" placeholder="My breakers keep tripping..."></textarea>
+                    <button type="submit" class="btn" style="width: 100%; background: var(--accent-warning); color: #000; font-weight: bold; margin-top: 10px;">Get My Quote</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="waitlist-form" class="showcase-section animate-on-scroll" style="background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, var(--bg-surface) 100%);">
+            <div class="showcase-header">
+                <span class="showcase-tag">Style: Web3 / Beta Launch</span>
+                <h2>The Waitlist Capture</h2>
+            </div>
+            <div class="form-container" style="max-width: 500px; margin: 0 auto;">
+                <form class="form-glass simulated-form" data-success-title="You're on the list." data-success-msg="Position #4,291. Keep an eye on your inbox for early access keys." data-reset-text="Return">
+                    <i class="fa-solid fa-rocket" style="font-size: 2rem; color: var(--brand-primary); margin-bottom: 16px;"></i>
+                    <h3 style="margin-bottom: 8px;">Join the Beta</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 24px; font-size: var(--text-sm);">Enter your email to secure your spot in line.</p>
+                    
+                    <div style="display: flex; gap: 8px;">
+                        <input type="email" class="form-control" placeholder="hello@company.com" required style="background: rgba(0,0,0,0.5);">
+                        <button type="submit" class="btn btn-primary" style="white-space: nowrap;">Secure Spot</button>
                     </div>
-                    <button type="submit" class="btn" style="width: 100%; background: var(--accent-warning); color: #000; font-weight: bold; padding: 14px; margin-top: 10px;">Get My Quote</button>
                 </form>
             </div>
         </section>

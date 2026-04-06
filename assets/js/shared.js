@@ -2,6 +2,7 @@
    BRENNER LAB - GLOBAL JS ENGINE
    ========================================================================== */
 
+/* --- SECTION 1: INIT & ROUTER --- */
 document.addEventListener('DOMContentLoaded', () => {
     initIncludes();
 });
@@ -25,6 +26,7 @@ async function initIncludes() {
             }
         }
         
+        // Boot up component engines
         setTimeout(() => {
             initScrollAnimations();
             initCounters();
@@ -35,6 +37,7 @@ async function initIncludes() {
     } catch (error) { console.error("Error loading includes.", error); }
 }
 
+/* --- SECTION 2: UTILITIES --- */
 function initNavigation() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -46,36 +49,7 @@ function copyCodeToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => alert("Link copied to clipboard!"));
 }
 
-function initCounters() {
-    const counters = document.querySelectorAll('.counter-value');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const finalValue = parseInt(target.getAttribute('data-target'));
-                const duration = 2000; 
-                const step = finalValue / (duration / 16); 
-                let current = 0;
-                
-                const updateCounter = () => {
-                    current += step;
-                    if (current < finalValue) {
-                        target.innerText = Math.ceil(current).toLocaleString();
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        target.innerText = finalValue.toLocaleString();
-                        if(target.hasAttribute('data-plus')) target.innerText += '+';
-                        if(target.hasAttribute('data-percent')) target.innerText += '%';
-                    }
-                };
-                updateCounter();
-                observer.unobserve(target); 
-            }
-        });
-    }, { threshold: 0.5 });
-    counters.forEach(counter => observer.observe(counter));
-}
-
+/* --- SECTION 3: ANIMATIONS --- */
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     const observer = new IntersectionObserver((entries) => {
@@ -96,7 +70,39 @@ function initScrollAnimations() {
     });
 }
 
-/* --- THE UX FORM ENGINE (DYNAMIC MESSAGING) --- */
+/* --- SECTION 4: DATA COUNTERS --- */
+function initCounters() {
+    const counters = document.querySelectorAll('.counter-value');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const finalValue = parseFloat(target.getAttribute('data-target'));
+                const isDecimal = target.hasAttribute('data-decimal');
+                const duration = 2000; 
+                const step = finalValue / (duration / 16); 
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < finalValue) {
+                        target.innerText = isDecimal ? current.toFixed(1) : Math.ceil(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        target.innerText = isDecimal ? finalValue.toFixed(1) : finalValue.toLocaleString();
+                        if(target.hasAttribute('data-plus')) target.innerText += '+';
+                        if(target.hasAttribute('data-percent')) target.innerText += '%';
+                    }
+                };
+                updateCounter();
+                observer.unobserve(target); 
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(counter => observer.observe(counter));
+}
+
+/* --- SECTION 5: FORM ENGINE --- */
 function initFormSimulations() {
     const forms = document.querySelectorAll('.simulated-form');
     forms.forEach(form => {
@@ -105,7 +111,6 @@ function initFormSimulations() {
             const btn = form.querySelector('button[type="submit"]');
             const container = form.closest('.form-container');
             
-            // Pull custom text from HTML attributes or use defaults
             const title = form.getAttribute('data-success-title') || "Action Completed";
             const msg = form.getAttribute('data-success-msg') || "Data routed to CRM successfully.";
             const resetBtnText = form.getAttribute('data-reset-text') || "Reset Form";
@@ -129,7 +134,7 @@ function initFormSimulations() {
     });
 }
 
-/* --- THE WIZARD ENGINE (PROGRESS FILL & VALIDATION) --- */
+/* --- SECTION 6: WIZARD ENGINE --- */
 function initWizard() {
     const wizard = document.getElementById('multi-step-wizard');
     if (!wizard) return;
@@ -143,40 +148,31 @@ function initWizard() {
     const termsCheck = document.getElementById('terms-check');
 
     function updateWizard() {
-        // Panes
         panes.forEach((pane, index) => pane.classList.toggle('active', index === currentStep));
 
-        // Indicators & Bubbles
         indicators.forEach((ind, index) => {
             ind.classList.remove('active', 'completed');
-            if (index === currentStep) ind.classList.add('active'); // Ring
-            if (index < currentStep) ind.classList.add('completed'); // Solid Blue
+            if (index === currentStep) ind.classList.add('active'); 
+            if (index < currentStep) ind.classList.add('completed'); 
         });
 
-        // The Connecting Line Math
         const percentage = (currentStep / (panes.length - 1)) * 100;
-        progressLine.style.width = `calc(${percentage}% - 20px)`; // Account for padding
+        progressLine.style.width = `calc(${percentage}% - 20px)`; 
 
-        // Buttons & Gates
         prevBtn.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
         
         if (currentStep === panes.length - 1) {
-            // Final Step - Requires Checkbox
             nextBtn.innerHTML = 'Complete Setup <i class="fa-solid fa-check"></i>';
             nextBtn.classList.add('btn-success');
-            nextBtn.disabled = !termsCheck.checked;
+            nextBtn.disabled = termsCheck ? !termsCheck.checked : false;
         } else {
-            // Standard Next Step
             nextBtn.innerHTML = 'Next Step <i class="fa-solid fa-arrow-right"></i>';
             nextBtn.classList.remove('btn-success');
             nextBtn.disabled = false;
         }
     }
 
-    // Checkbox listener to enable/disable final submit
-    if(termsCheck) {
-        termsCheck.addEventListener('change', updateWizard);
-    }
+    if(termsCheck) termsCheck.addEventListener('change', updateWizard);
 
     nextBtn.addEventListener('click', () => {
         if (currentStep < panes.length - 1) {
