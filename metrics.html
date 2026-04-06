@@ -10,54 +10,53 @@
     <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
-
     <div id="header-placeholder"></div>
 
     <main class="container">
         <div class="mb-8 mt-8 text-center animate-on-scroll">
             <h1 style="font-size: var(--text-4xl);">The Insight Deck</h1>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Data is only as valuable as its presentation. Here are 4 distinct ways to visualize key performance indicators (KPIs) based on your industry.</p>
+            <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">Executives don't have time to parse raw data. A well-engineered dashboard instantly communicates health, progress, and ROI. Here are 4 responsive visualization patterns I build for different industries.</p>
         </div>
 
         <section class="showcase-section animate-on-scroll">
             <div class="showcase-header">
-                <span class="showcase-tag">Style: B2B / SaaS</span>
+                <span class="showcase-tag">Style: B2B / SaaS Platform</span>
                 <h2>The Corporate Quad</h2>
-                <p style="color: var(--text-muted);">Highly structured, readable, and professional. Best suited for software dashboards, financial reports, and internal admin panels.</p>
+                <p style="color: var(--text-muted); max-width: 800px;">The industry standard for admin panels. It utilizes distinct iconography and subtle hover elevations to make dense financial or user data feel manageable and highly structured.</p>
             </div>
             
-            <div class="grid grid-cols-4 gap-6">
+            <div class="grid grid-cols-4">
                 <div class="metric-card-saas">
                     <div class="metric-icon-wrapper icon-blue"><i class="fa-solid fa-users"></i></div>
                     <p class="form-label">Total Users</p>
-                    <h3 class="counter-value" data-target="24592">0</h3>
+                    <h3 class="counter-value" style="font-size: var(--text-2xl); color: var(--text-heading);" data-target="24592">0</h3>
                 </div>
                 <div class="metric-card-saas">
                     <div class="metric-icon-wrapper icon-green"><i class="fa-solid fa-chart-line"></i></div>
                     <p class="form-label">Monthly Revenue</p>
-                    <h3>$<span class="counter-value" data-target="84500">0</span></h3>
+                    <h3 style="font-size: var(--text-2xl); color: var(--text-heading);">$<span class="counter-value" data-target="84500">0</span></h3>
                 </div>
                 <div class="metric-card-saas">
                     <div class="metric-icon-wrapper icon-orange"><i class="fa-solid fa-bolt"></i></div>
                     <p class="form-label">Active Sessions</p>
-                    <h3 class="counter-value" data-target="1205">0</h3>
+                    <h3 class="counter-value" style="font-size: var(--text-2xl); color: var(--text-heading);" data-target="1205">0</h3>
                 </div>
                 <div class="metric-card-saas">
                     <div class="metric-icon-wrapper icon-blue"><i class="fa-solid fa-server"></i></div>
                     <p class="form-label">Server Uptime</p>
-                    <h3 class="counter-value" data-target="99" data-percent="true">0</h3>
+                    <h3 class="counter-value" style="font-size: var(--text-2xl); color: var(--text-heading);" data-target="99" data-percent="true">0</h3>
                 </div>
             </div>
         </section>
 
         <section class="showcase-section animate-on-scroll">
             <div class="showcase-header">
-                <span class="showcase-tag">Style: Creative / Agency</span>
+                <span class="showcase-tag">Style: Creative / Digital Agency</span>
                 <h2>The Agency Typograph</h2>
-                <p style="color: var(--text-muted);">Strips away boxes and borders to let the data speak. Ideal for creative portfolios, digital agencies, and high-end consultancies.</p>
+                <p style="color: var(--text-muted); max-width: 800px;">Removes the boxes entirely. By relying purely on massive typography and precise whitespace, this layout projects extreme confidence. Ideal for portfolio sites showing off lifetime achievements.</p>
             </div>
             
-            <div class="grid grid-cols-3 gap-8" style="padding: 40px 0;">
+            <div class="grid grid-cols-3" style="padding: 40px 0;">
                 <div class="metric-minimal">
                     <div class="value counter-value" data-target="150" data-plus="true">0</div>
                     <div class="label">Projects Delivered</div>
@@ -77,10 +76,10 @@
             <div class="showcase-header">
                 <span class="showcase-tag">Style: Web3 / Gaming</span>
                 <h2>The Cyber Glow</h2>
-                <p style="color: var(--text-muted);">High contrast with electric accents. Perfect for crypto startups, gaming platforms, and cutting-edge tech products.</p>
+                <p style="color: var(--text-muted); max-width: 800px;">A high-energy, dark-mode specific design utilizing CSS inset shadows and text-glows. Perfect for crypto startups, trading terminals, and gaming hubs where metrics need to feel "live."</p>
             </div>
             
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid grid-cols-3">
                 <div class="metric-neon">
                     <p style="color: var(--text-muted); font-size: var(--text-sm); text-transform: uppercase;">Volume Traded (24h)</p>
                     <div class="value">$<span class="counter-value" data-target="42">0</span>M</div>
@@ -98,23 +97,22 @@
 
         <section class="showcase-section animate-on-scroll">
             <div class="showcase-header">
-                <span class="showcase-tag">Style: EdTech / Fitness</span>
-                <h2>Goal Trackers</h2>
-                <p style="color: var(--text-muted);">Visualizing completion and capacity. Best for learning platforms, fitness apps, or fundraising pages.</p>
+                <span class="showcase-tag">Style: EdTech / Logistics</span>
+                <h2>Capacity Trackers</h2>
+                <p style="color: var(--text-muted); max-width: 800px;">Numbers alone don't tell the full story of capacity. These animated horizontal bars visually communicate how close a metric is to its ceiling or goal.</p>
             </div>
             
-            <div class="grid grid-cols-2 gap-8">
+            <div class="grid grid-cols-2">
                 <div class="metric-progress-card">
                     <div class="progress-header"><span>Course Completion</span> <span>75%</span></div>
                     <div class="progress-track"><div class="progress-fill" style="width: 75%;"></div></div>
                 </div>
                 <div class="metric-progress-card">
-                    <div class="progress-header"><span>Server Storage Capacity</span> <span style="color: var(--accent-warning);">90%</span></div>
+                    <div class="progress-header"><span>Fleet Utilization</span> <span style="color: var(--accent-warning);">90%</span></div>
                     <div class="progress-track"><div class="progress-fill" style="width: 90%; background: var(--accent-warning);"></div></div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <div id="footer-placeholder"></div>
