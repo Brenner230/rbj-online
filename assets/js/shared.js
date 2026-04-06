@@ -28,8 +28,8 @@ async function initIncludes() {
         setTimeout(() => {
             initScrollAnimations();
             initCounters();
-            initFormSimulations(); // New Form Engine
-            initWizard(); // New Wizard Engine
+            initFormSimulations(); 
+            initWizard(); 
         }, 100);
 
     } catch (error) { console.error("Error loading includes.", error); }
@@ -96,28 +96,32 @@ function initScrollAnimations() {
     });
 }
 
-/* --- THE UX FORM ENGINE --- */
+/* --- THE UX FORM ENGINE (DYNAMIC MESSAGING) --- */
 function initFormSimulations() {
     const forms = document.querySelectorAll('.simulated-form');
     forms.forEach(form => {
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop page reload
+            e.preventDefault(); 
             const btn = form.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
             const container = form.closest('.form-container');
+            
+            // Pull custom text from HTML attributes or use defaults
+            const title = form.getAttribute('data-success-title') || "Action Completed";
+            const msg = form.getAttribute('data-success-msg') || "Data routed to CRM successfully.";
+            const resetBtnText = form.getAttribute('data-reset-text') || "Reset Form";
 
-            // 1. Loading State
             btn.disabled = true;
             btn.innerHTML = '<i class="fa-solid fa-circle-notch spinner"></i> Processing...';
 
-            // 2. Success State (Simulate 1.5s network request)
             setTimeout(() => {
                 container.innerHTML = `
                     <div class="success-message">
-                        <i class="fa-solid fa-circle-check" style="font-size: 3rem; color: var(--accent-success); margin-bottom: 16px;"></i>
-                        <h3 style="color: var(--text-heading); margin-bottom: 8px;">Action Completed</h3>
-                        <p style="color: var(--text-muted);">This form is connected to our simulated UI layer. In production, this data securely routes to your CRM or database.</p>
-                        <button class="btn btn-outline mt-4" onclick="location.reload()" style="background: transparent; border: 1px solid rgba(255,255,255,0.2);">Reset Demo</button>
+                        <i class="fa-solid fa-circle-check" style="font-size: 3.5rem; color: var(--accent-success); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--text-heading); margin-bottom: 12px; font-size: 1.8rem;">${title}</h3>
+                        <p style="color: var(--text-muted); max-width: 400px; margin: 0 auto 24px auto;">${msg}</p>
+                        <button class="btn btn-outline" onclick="location.reload()">
+                            <i class="fa-solid fa-rotate-right"></i> ${resetBtnText}
+                        </button>
                     </div>
                 `;
             }, 1500);
@@ -125,38 +129,53 @@ function initFormSimulations() {
     });
 }
 
+/* --- THE WIZARD ENGINE (PROGRESS FILL & VALIDATION) --- */
 function initWizard() {
     const wizard = document.getElementById('multi-step-wizard');
     if (!wizard) return;
 
     let currentStep = 0;
     const panes = wizard.querySelectorAll('.wizard-pane');
-    const indicators = wizard.querySelectorAll('.step-indicator');
+    const indicators = document.querySelectorAll('.step-indicator');
+    const progressLine = document.querySelector('.wizard-progress-line');
     const nextBtn = document.getElementById('wizard-next');
     const prevBtn = document.getElementById('wizard-prev');
+    const termsCheck = document.getElementById('terms-check');
 
     function updateWizard() {
-        // Handle Panes
-        panes.forEach((pane, index) => {
-            pane.classList.toggle('active', index === currentStep);
-        });
+        // Panes
+        panes.forEach((pane, index) => pane.classList.toggle('active', index === currentStep));
 
-        // Handle Indicators
+        // Indicators & Bubbles
         indicators.forEach((ind, index) => {
             ind.classList.remove('active', 'completed');
-            if (index === currentStep) ind.classList.add('active');
-            if (index < currentStep) ind.classList.add('completed');
+            if (index === currentStep) ind.classList.add('active'); // Ring
+            if (index < currentStep) ind.classList.add('completed'); // Solid Blue
         });
 
-        // Handle Buttons
+        // The Connecting Line Math
+        const percentage = (currentStep / (panes.length - 1)) * 100;
+        progressLine.style.width = `calc(${percentage}% - 20px)`; // Account for padding
+
+        // Buttons & Gates
         prevBtn.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+        
         if (currentStep === panes.length - 1) {
-            nextBtn.innerHTML = 'Submit Application <i class="fa-solid fa-check"></i>';
+            // Final Step - Requires Checkbox
+            nextBtn.innerHTML = 'Complete Setup <i class="fa-solid fa-check"></i>';
             nextBtn.classList.add('btn-success');
+            nextBtn.disabled = !termsCheck.checked;
         } else {
+            // Standard Next Step
             nextBtn.innerHTML = 'Next Step <i class="fa-solid fa-arrow-right"></i>';
             nextBtn.classList.remove('btn-success');
+            nextBtn.disabled = false;
         }
+    }
+
+    // Checkbox listener to enable/disable final submit
+    if(termsCheck) {
+        termsCheck.addEventListener('change', updateWizard);
     }
 
     nextBtn.addEventListener('click', () => {
@@ -164,7 +183,6 @@ function initWizard() {
             currentStep++;
             updateWizard();
         } else {
-            // Trigger the simulated submit on the wrapper form
             wizard.closest('form').dispatchEvent(new Event('submit'));
         }
     });
@@ -176,5 +194,5 @@ function initWizard() {
         }
     });
 
-    updateWizard(); // Init first load
+    updateWizard();
 }
